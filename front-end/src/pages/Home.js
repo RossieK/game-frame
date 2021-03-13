@@ -26,6 +26,7 @@ const Home = () => {
                         id={game.id}
                         image={game.background_image}
                         key={game.id}
+                        short_screenshots={game.short_screenshots}
                     />
                 ))}
             </StyledGames>

@@ -34,6 +34,10 @@ const popular_games = `games?key=${process.env.REACT_APP_GAMES_API}&dates=${last
 const upcoming_games = `games?key=${process.env.REACT_APP_GAMES_API}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 const new_games = `games?key=${process.env.REACT_APP_GAMES_API}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
 
+//All games
 export const popularGamesUrl = () => `${base_url}${popular_games}`;
 export const upcomingGamesUrl = () => `${base_url}${upcoming_games}`;
 export const newGamesUrl = () => `${base_url}${new_games}`;
+
+//Single game details
+export const gameDetailsUrl = (game_id) => `${base_url}games/${game_id}`;
