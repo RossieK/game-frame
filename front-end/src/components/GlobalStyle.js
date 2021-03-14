@@ -50,6 +50,11 @@ const GlobalStyles = createGlobalStyle `
     img{
         display:block;
     }
+
+    input{
+        font-weight: bold;
+        font-family: 'Jura', sans-serif;
+    }
 `;
 
 export default GlobalStyles;
