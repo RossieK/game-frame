@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import {noDetailsLoaded} from '../actions/detailAction';
+import { useHistory } from 'react-router-dom';
+import { noDetailsLoaded } from '../actions/detailAction';
+import { smallImage } from '../util';
 
 const GameDetail = () => {
-const history = useHistory();
-const dispatch = useDispatch();
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-//Exit page
-const exitDetailHandler = (e) => {
-    const element = e.target;
+    //Exit page
+    const exitDetailHandler = (e) => {
+        const element = e.target;
 
-    if(element.classList.contains('shadow')){
-        document.body.style.overflow = 'auto';
-        history.push('/');
-        dispatch(noDetailsLoaded());
+        if (element.classList.contains('shadow')) {
+            document.body.style.overflow = 'auto';
+            history.push('/');
+            dispatch(noDetailsLoaded());
+        }
     }
-}
 
     //Data
     const { game, screens, isLoading } = useSelector(state => state.detail);
@@ -42,14 +43,14 @@ const exitDetailHandler = (e) => {
                             </StyledInfo>
                         </StyledStats>
                         <StyledMedia>
-                            <img src={game.background_image} alt={game.name} />
+                            <img src={smallImage(game.background_image, 1280)} alt={game.name} />
                         </StyledMedia>
                         <StyledDescription>
                             <p>{game.description_raw}</p>
                         </StyledDescription>
                         <div className="gallery">
                             {screens && screens.map(screen => (
-                                <img src={screen.image} key={screen.id} alt={game.name} />
+                                <img src={smallImage(screen.image, 1280)} key={screen.id} alt={game.name} />
                             ))}
                         </div>
                     </StyledDetail>
