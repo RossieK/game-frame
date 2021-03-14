@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {noDetailsLoaded} from '../actions/detailAction';
 
 const GameDetail = () => {
 const history = useHistory();
+const dispatch = useDispatch();
 
 //Exit page
 const exitDetailHandler = (e) => {
@@ -13,6 +15,7 @@ const exitDetailHandler = (e) => {
     if(element.classList.contains('shadow')){
         document.body.style.overflow = 'auto';
         history.push('/');
+        dispatch(noDetailsLoaded());
     }
 }
 
@@ -45,7 +48,7 @@ const exitDetailHandler = (e) => {
                             <p>{game.description_raw}</p>
                         </StyledDescription>
                         <div className="gallery">
-                            {screens.map(screen => (
+                            {screens && screens.map(screen => (
                                 <img src={screen.image} key={screen.id} alt={game.name} />
                             ))}
                         </div>

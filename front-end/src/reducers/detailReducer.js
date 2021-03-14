@@ -22,6 +22,16 @@ const detailReducer = (state = initialState, action) => {
                 isLoading: false
             }
 
+        case "NO_DETAILS_LOADED":
+            return {
+                ...state,
+                game: {
+                    platforms: []
+                },
+                screens: [],
+                isLoading: true
+            }
+
         default:
             return {...state }
     }

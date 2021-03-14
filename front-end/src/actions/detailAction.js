@@ -16,3 +16,9 @@ export const loadDetail = (id, short_screenshots) => async(dispatch) => {
         }
     });
 };
+
+export const noDetailsLoaded = () => async(dispatch) => {
+    dispatch({
+        type: "NO_DETAILS_LOADED"
+    });
+};
