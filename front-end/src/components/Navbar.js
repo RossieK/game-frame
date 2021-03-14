@@ -47,6 +47,9 @@ const StyledNavbar = styled.div`
     position:sticky;
     top:0;
     z-index:10;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 20px 1px 20px #f18d19;
 
     a{
     color:white;

@@ -56,6 +56,13 @@ const GlobalStyles = createGlobalStyle `
         font-weight: bold;
         font-family: 'Jura', sans-serif;
     }
+
+    .x-search{
+    color: #f18d19;
+    margin-top: 2.1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    }
 `;
 
 export default GlobalStyles;

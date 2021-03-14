@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import logo from '../img/logo.svg';
 import { fetchSearch } from '../actions/gamesAction';
 import { useDispatch } from 'react-redux';
 import { fadeIn } from '../animations';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = () => {
+const Search = () => {
     //Search functionality
     const dispatch = useDispatch();
     const [textInput, setTextInput] = useState("");
@@ -23,22 +24,19 @@ const Nav = () => {
     }
 
     return (
-        <StyledNav variants={fadeIn} initial="hidden" animate="show">
-            <StyledLogo onClick={clearSearched}>
-                <img src={logo} alt="logo" />
-                <h1>Game Frame</h1>
-            </StyledLogo>
+        <StyledSearch variants={fadeIn} initial="hidden" animate="show">
             <form className="search">
+                <FontAwesomeIcon className="x-search" size="1x" icon={faArrowCircleLeft} onClick={clearSearched}/>
                 <input value={textInput} onChange={inputHandler} type="text" />
-                <button onClick={submitSearch} type="submit">Search</button>
+                <button onClick={submitSearch} type="submit"> <FontAwesomeIcon size="1x" icon={faSearch} /></button>
             </form>
-        </StyledNav>
+        </StyledSearch>
     );
 };
 
-const StyledNav = styled(motion.div)`
-    padding: 3rem 5rem;
-    text-align: center;
+const StyledSearch = styled(motion.div)`
+    padding: 8rem 5rem 5rem 5rem;
+    text-align: left;
     font-size: 2rem;
     input{
         width: 30%;
@@ -46,7 +44,9 @@ const StyledNav = styled(motion.div)`
         padding: 0.5rem;
         border: none;
         margin-top: 1rem;
-        box-shadow: 0px 0px 30px #f18d19;
+        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 1rem;
+        box-shadow: 0px 0px 20px #f18d19;
         font-weight: bold;
     }
     button{
@@ -56,19 +56,10 @@ const StyledNav = styled(motion.div)`
         cursor: pointer;
         background: #f18d19;
         color: white;
+        border-bottom-right-radius: 1rem;
+        border-top-right-radius: 1rem;
         box-shadow: 0px 0px 10px #FFFFFF;
     }
 `;
 
-const StyledLogo = styled(motion.div)`
-    display: flex;
-    justify-content: center;
-    padding: 1.5rem;
-    cursor: pointer;
-    img{
-        height: 4rem;
-        width: 4rem;
-    }
-`;
-
-export default Nav;
+export default Search;
