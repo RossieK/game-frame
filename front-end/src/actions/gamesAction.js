@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { newGamesUrl, popularGamesUrl, upcomingGamesUrl } from '../api';
-
+import { newGamesUrl, popularGamesUrl, upcomingGamesUrl, searchGameUrl } from '../api';
 //Actipn Creator
 
 export const loadGames = () => async(dispatch) => {
@@ -15,6 +14,17 @@ export const loadGames = () => async(dispatch) => {
             popular: popularData.data.results,
             upcoming: upcomingData.data.results,
             newGames: newGamesData.data.results
+        }
+    });
+}
+
+export const fetchSearch = (game_name) => async(dispatch) => {
+    const searchGames = await axios.get(searchGameUrl(game_name));
+
+    dispatch({
+        type: "FETCH_SEARCHED",
+        payload: {
+            searched: searchGames.data.results
         }
     });
 }
