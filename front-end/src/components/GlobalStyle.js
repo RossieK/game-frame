@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle `
     body{
         font-family: 'Jura', sans-serif;
         width: 100%;
+        background-color: #303548;
     }
 
     h2{

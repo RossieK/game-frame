@@ -46,7 +46,7 @@ const StyledNav = styled(motion.div)`
         padding: 0.5rem;
         border: none;
         margin-top: 1rem;
-        box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 30px #f18d19;
         font-weight: bold;
     }
     button{
@@ -56,6 +56,7 @@ const StyledNav = styled(motion.div)`
         cursor: pointer;
         background: #f18d19;
         color: white;
+        box-shadow: 0px 0px 10px #FFFFFF;
     }
 `;
 
