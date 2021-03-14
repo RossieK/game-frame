@@ -37,12 +37,12 @@ const Navbar = () => {
 };
 
 const StyledNavbar = styled.div`
-    min-height:10vh;
+    min-height:8vh;
     display:flex;
     margin:auto;
     justify-content:space-between;
     align-items:center;
-    padding:0rem 2.5rem;
+    padding:0rem 5rem 0rem 3rem;
     background: #f18d19;
     position:sticky;
     top:0;
@@ -81,7 +81,7 @@ const StyledNavbar = styled.div`
     }
 
     li{
-    padding-left:8rem;
+    padding-left:5rem;
     position:relative;
     }
 
@@ -110,7 +110,7 @@ background:#303548;
 width:0%;
 position:absolute;
 bottom:-80%;
-left:53%;
+left:51%;
 @media (max-width:1300px){
     left: 0%;
 }

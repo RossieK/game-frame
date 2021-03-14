@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './components/Search';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import GlobalStyles from './components/GlobalStyle';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path={["/game/:id", "/"]}>
         <Home />
       </Route>
+      <Footer />
     </div>
   );
 }
