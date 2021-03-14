@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { noDetailsLoaded } from '../actions/detailAction';
 import { smallImage } from '../util';
+import { fadeIn } from '../animations';
 //Images
 import playstation from '../img/playstation.svg';
 import steam from '../img/steam.svg';
@@ -74,7 +75,7 @@ const GameDetail = () => {
     return (
         <>
             {!isLoading && (
-                <StyledCardShadow className="shadow" onClick={exitDetailHandler}>
+                <StyledCardShadow variants={fadeIn} initial="hidden" animate="show" className="shadow" onClick={exitDetailHandler}>
                     <StyledDetail>
                         <StyledStats>
                             <div className="rating">

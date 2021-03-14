@@ -6,6 +6,7 @@ import { loadGames } from '../actions/gamesAction';
 import Game from '../components/Game';
 import GameDetail from '../components/GameDetail';
 import { useLocation } from 'react-router-dom';
+import { fadeIn } from '../animations';
 
 const Home = () => {
     //Location
@@ -22,7 +23,7 @@ const Home = () => {
     const { popular, newGames, upcoming, searched } = useSelector(state => state.games);
 
     return (
-        <StyledGameList>
+        <StyledGameList variants={fadeIn} initial="hidden" animate="show">
             {pathId && <GameDetail />}
             {searched.length ? (
                 <div className="searched">
