@@ -9,7 +9,10 @@ import linkedin from '../img/linkedin.svg';
 const Footer = () => {
     return (
         <StyledFooter variants={fadeIn} initial="hidden" animate="show">
-            <h3>Game rating app developed for educational purposes by Rositsa Kirova <a href="https://github.com/RossieK"><img src={github} alt="Github logo" /></a><a href="https://www.linkedin.com/in/rosi-kirova-24b524136/"><img src={linkedin} alt="LinkedIn logo" /></a></h3>
+            <h3>Game rating app developed for educational purposes by Rositsa Kirova 
+                <a href="https://github.com/RossieK"><img src={github} alt="Github logo" /></a>
+                <a href="https://www.linkedin.com/in/rosi-kirova-24b524136/"><img src={linkedin} alt="LinkedIn logo" /></a>
+            </h3>
             <h4><FontAwesomeIcon size="1x" icon={faCopyright} /> 2021, Softuni, ReactJS</h4>
         </StyledFooter>
     );
