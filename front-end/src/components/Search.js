@@ -35,7 +35,7 @@ const Search = () => {
 };
 
 const StyledSearch = styled(motion.div)`
-    padding: 8rem 5rem 5rem 5rem;
+    padding: 5rem 5rem 5rem 5rem;
     text-align: left;
     font-size: 2rem;
     input{

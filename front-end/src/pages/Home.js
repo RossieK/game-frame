@@ -1,12 +1,16 @@
+//Funtionality
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { loadGames } from '../actions/gamesAction';
+//Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { loadGames } from '../actions/gamesAction';
+import { fadeIn } from '../animations';
+//Components
+import Search from '../components/Search';
 import Game from '../components/Game';
 import GameDetail from '../components/GameDetail';
-import { useLocation } from 'react-router-dom';
-import { fadeIn } from '../animations';
 
 const Home = () => {
     //Location
@@ -23,63 +27,66 @@ const Home = () => {
     const { popular, newGames, upcoming, searched } = useSelector(state => state.games);
 
     return (
-        <StyledGameList variants={fadeIn} initial="hidden" animate="show">
-            {pathId && <GameDetail />}
-            {searched.length ? (
-                <div className="searched">
-                    <h2>Searched Games</h2>
-                    <StyledGames>
-                        {searched.map(game => (
-                            <Game
-                                name={game.name}
-                                released={game.released}
-                                id={game.id}
-                                image={game.background_image}
-                                key={game.id}
-                                short_screenshots={game.short_screenshots}
-                            />
-                        ))}
-                    </StyledGames>
-                </div>
-            ) : ""}
-            <h2>Upcoming Games</h2>
-            <StyledGames>
-                {upcoming.map(game => (
-                    <Game
-                        name={game.name}
-                        released={game.released}
-                        id={game.id}
-                        image={game.background_image}
-                        key={game.id}
-                        short_screenshots={game.short_screenshots}
-                    />
-                ))}
-            </StyledGames>
-            <h2>Popular Games</h2>
-            <StyledGames>
-                {popular.map(game => (
-                    <Game
-                        name={game.name}
-                        released={game.released}
-                        id={game.id}
-                        image={game.background_image}
-                        key={game.id}
-                    />
-                ))}
-            </StyledGames>
-            <h2>New Games</h2>
-            <StyledGames>
-                {newGames.map(game => (
-                    <Game
-                        name={game.name}
-                        released={game.released}
-                        id={game.id}
-                        image={game.background_image}
-                        key={game.id}
-                    />
-                ))}
-            </StyledGames>
-        </StyledGameList>
+        <>
+            <Search />
+            <StyledGameList variants={fadeIn} initial="hidden" animate="show">
+                {pathId && <GameDetail />}
+                {searched.length ? (
+                    <div className="searched">
+                        <h2>Searched Games</h2>
+                        <StyledGames>
+                            {searched.map(game => (
+                                <Game
+                                    name={game.name}
+                                    released={game.released}
+                                    id={game.id}
+                                    image={game.background_image}
+                                    key={game.id}
+                                    short_screenshots={game.short_screenshots}
+                                />
+                            ))}
+                        </StyledGames>
+                    </div>
+                ) : ""}
+                <h2>Upcoming Games</h2>
+                <StyledGames>
+                    {upcoming.map(game => (
+                        <Game
+                            name={game.name}
+                            released={game.released}
+                            id={game.id}
+                            image={game.background_image}
+                            key={game.id}
+                            short_screenshots={game.short_screenshots}
+                        />
+                    ))}
+                </StyledGames>
+                <h2>Popular Games</h2>
+                <StyledGames>
+                    {popular.map(game => (
+                        <Game
+                            name={game.name}
+                            released={game.released}
+                            id={game.id}
+                            image={game.background_image}
+                            key={game.id}
+                        />
+                    ))}
+                </StyledGames>
+                <h2>New Games</h2>
+                <StyledGames>
+                    {newGames.map(game => (
+                        <Game
+                            name={game.name}
+                            released={game.released}
+                            id={game.id}
+                            image={game.background_image}
+                            key={game.id}
+                        />
+                    ))}
+                </StyledGames>
+            </StyledGameList>
+        </>
     );
 };
 
