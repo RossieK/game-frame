@@ -11,6 +11,7 @@ import MyProfile from './pages/MyProfile';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/login" exact>
           <Login />
+        </Route>
+        <Route>
+          <Error />
         </Route>
       </Switch>
       <Footer />

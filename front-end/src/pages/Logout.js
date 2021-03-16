@@ -1,3 +1,5 @@
+//Functionality
+import { Link } from 'react-router-dom';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -11,7 +13,7 @@ const Logout = () => {
     return (
         <StyledLogout variants={fadeIn} initial="hidden" animate="show">
             <div>
-                <button><FontAwesomeIcon size="3x" icon={faHome} /><h3>Back to Games</h3></button>
+                <button><FontAwesomeIcon size="3x" icon={faHome} /><Link to="/"><h3>Back to Games</h3></Link></button>
                 <button><FontAwesomeIcon size="3x" icon={faSignOutAlt} /><h3>Logout</h3></button>
             </div>
             <img src={logout} alt="Sad cat" />
