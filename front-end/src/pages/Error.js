@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 //Image
 import error from '../img/error.jpeg';
 
 const Error = () => {
     return (
-        <StyledError>
+        <StyledError variants={fadeIn} initial="hidden" animate="show">
             <img src={error} alt="Error" />
             <div>
                 <h1>AWWWW... Don't Cry.</h1>
