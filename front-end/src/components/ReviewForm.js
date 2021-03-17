@@ -1,8 +1,11 @@
+//Styling
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 
 const ReviewForm = () => {
     return (
-        <StyledReviewForm>
+        <StyledReviewForm variants={fadeIn} initial="hidden" animate="show">
             <div className="top-container">
                 <div className="giphy">
                     <img src="https://media.giphy.com/media/nDV1pz6h3Ux9kP7a4z/giphy.gif" alt="Giphy" />
@@ -11,6 +14,7 @@ const ReviewForm = () => {
                     <form>
                         <input type="text" placeholder="Name" />
                         <input type="text" placeholder="Game name" />
+                        <input type="text" placeholder="Game cover URL" />
                         <textarea placeholder="Review" />
                         <button type="submit">Submit</button>
                     </form>
@@ -20,7 +24,7 @@ const ReviewForm = () => {
     );
 };
 
-const StyledReviewForm = styled.div`
+const StyledReviewForm = styled(motion.div)`
     margin: auto;
     margin-top: 5rem;
     margin-bottom: 10rem;
