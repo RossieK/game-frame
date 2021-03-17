@@ -1,11 +1,17 @@
+//Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+//Components
+import ReviewForm from '../components/ReviewForm';
 
 const Reviews = () => {
     return (
-        <StyledReviews>
-            <h1>Reviews Page</h1>
-        </StyledReviews>
+        <>
+            <ReviewForm />
+            <StyledReviews>
+                <h1>Reviews Page</h1>
+            </StyledReviews>
+        </>
     );
 };
 
