@@ -16,6 +16,10 @@ const Navbar = () => {
                     <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/" ? "50%" : "0%" }} />
                 </li>
                 <li>
+                    <Link to="/reviews">Reviews</Link>
+                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/reviews" ? "50%" : "0%" }} />
+                </li>
+                <li>
                     <Link to="/myprofile">My profile</Link>
                     <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/myprofile" ? "50%" : "0%" }} />
                 </li>
@@ -53,7 +57,7 @@ const StyledNavbar = styled.div`
 
     a{
     color:white;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
     text-decoration:none;
     }

@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 //Pages
 import Home from './pages/Home';
+import Reviews from './pages/Reviews';
 import MyProfile from './pages/MyProfile';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
@@ -21,6 +22,9 @@ function App() {
       <Switch>
         <Route path={["/game/:id", "/"]} exact>
           <Home />
+        </Route>
+        <Route path="/reviews" exact>
+          <Reviews />
         </Route>
         <Route path="/myprofile" exact>
           <MyProfile />
