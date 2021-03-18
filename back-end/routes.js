@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const registerController = require('./controllers/registerController');
 
-router.use('/', (req, res) => {
-    res.send('Hello from backend');
-});
+router.use('/register', registerController);
 
 module.exports = router;
