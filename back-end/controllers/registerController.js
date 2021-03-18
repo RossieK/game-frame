@@ -3,7 +3,6 @@ const userService = require('../services/userService');
 
 router.post('/', (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
 
     userService.register({ email, password })
         .then(user => {
