@@ -16,17 +16,22 @@ const Reviews = () => {
     }, [dispatch]);
 
     //Get data from state
-   const reviews = useSelector(state => state.reviews);
-   console.log(reviews);
+    const reviews = useSelector(state => state.reviews);
 
     return (
         <>
             <ReviewForm />
             <StyledReviews>
-                <Review url="https://picsum.photos/200/300" gameName="Test Game 1" userName="User 1" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sunt libero tempore hic dignissimos aspernatur totam a accusantium ipsa iure repudiandae deleniti nemo animi cum, vero illum accusamus necessitatibus consequuntur!" />
-                <Review url="https://picsum.photos/200/300" gameName="Test Game 2" userName="User 2" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sunt libero tempore hic dignissimos aspernatur totam a accusantium ipsa iure repudiandae deleniti nemo animi cum, vero illum accusamus necessitatibus consequuntur!" />
-                <Review url="https://picsum.photos/200/300" gameName="Test Game 3" userName="User 3" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sunt libero tempore hic dignissimos aspernatur totam a accusantium ipsa iure repudiandae deleniti nemo animi cum, vero illum accusamus necessitatibus consequuntur!" />
-                <Review url="https://picsum.photos/200/300" gameName="Test Game 4" userName="User 4" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sunt libero tempore hic dignissimos aspernatur totam a accusantium ipsa iure repudiandae deleniti nemo animi cum, vero illum accusamus necessitatibus consequuntur!" />
+                {reviews.length ?
+                    reviews.map(review => (
+                        <Review
+                            userName={review.user}
+                            gameName={review.game}
+                            url={review.imageUrl}
+                            description={review.description}
+                            key={review._id}
+                        />
+                    )) : ""}
             </StyledReviews>
         </>
     );
