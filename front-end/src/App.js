@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 //Pages
 import Home from './pages/Home';
 import Reviews from './pages/Reviews';
-import MyProfile from './pages/MyProfile';
+import Wishlist from './pages/Wishlist';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -26,8 +26,8 @@ function App() {
         <Route path="/reviews" exact>
           <Reviews />
         </Route>
-        <Route path="/myprofile" exact>
-          <MyProfile />
+        <Route path="/wishlist" exact>
+          <Wishlist />
         </Route>
         <Route path="/logout" exact>
           <Logout />

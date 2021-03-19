@@ -20,8 +20,8 @@ const Navbar = () => {
                     <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/reviews" ? "50%" : "0%" }} />
                 </li>
                 <li>
-                    <Link to="/myprofile">My profile</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/myprofile" ? "50%" : "0%" }} />
+                    <Link to="/wishlist">Wishlist</Link>
+                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/wishlist" ? "50%" : "0%" }} />
                 </li>
                 <li>
                     <Link to="/logout">Logout</Link>
