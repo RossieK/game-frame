@@ -1,20 +1,29 @@
 //Styling
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 //Components
 import WishGame from '../components/WishGame';
 
 const Wishlist = () => {
     return (
-        <StyledWishlist>
-            <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg"/>
-            <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg"/>
-            <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg"/>
-        </StyledWishlist>
+        <StyledWishPage>
+            <h2>My WishList</h2>
+            <StyledWishlist>
+                <WishGame name="Game 1Game 1Game 1Game 1Game 1Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
+                <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
+                <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
+            </StyledWishlist>
+        </StyledWishPage>
     );
 };
 
-const StyledWishlist = styled(motion.div)`
+const StyledWishPage = styled.div`
+    h2{
+        margin-top: 3rem;
+        margin-left: 5rem;
+    }
+`;
+
+const StyledWishlist = styled.div`
     padding: 5rem 5rem;
     min-height: 80vh;
     display: grid;
