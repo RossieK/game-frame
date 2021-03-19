@@ -1,3 +1,7 @@
+//Functionality
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadReviews } from '../actions/reviewsAction';
 //Styling
 import styled from 'styled-components';
 //Components
@@ -5,6 +9,16 @@ import ReviewForm from '../components/ReviewForm';
 import Review from '../components/Review';
 
 const Reviews = () => {
+    //Fetch Data
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadReviews());
+    }, [dispatch]);
+
+    //Get data from state
+   const reviews = useSelector(state => state.reviews);
+   console.log(reviews);
+
     return (
         <>
             <ReviewForm />

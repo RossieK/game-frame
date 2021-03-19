@@ -1,13 +1,9 @@
-const initState = {
-    reviews: []
-}
+const initState = {}
 
 const reviewsReducer = (state = initState, action) => {
     switch (action.type) {
         case "FETCH_REVIEWS":
-            return {...state,
-                reviews: action.payload
-            }
+            return action.payload.reviews;
 
         default:
             return {...state }
