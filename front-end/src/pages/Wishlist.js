@@ -1,16 +1,34 @@
+//Functionality
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadWishGames } from '../actions/wishesAction';
 //Styling
 import styled from 'styled-components';
 //Components
 import WishGame from '../components/WishGame';
 
 const Wishlist = () => {
+    //Fetch Data
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadWishGames());
+    }, [dispatch]);
+
+    //Get data from state
+    const wishGames = useSelector(state => state.wishGames);
+
     return (
         <StyledWishPage>
             <h2>My WishList</h2>
             <StyledWishlist>
-                <WishGame name="Game 1Game 1Game 1Game 1Game 1Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
-                <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
-                <WishGame name="Game 1" image="https://media.rawg.io/media/resize/1280/-/games/b11/b114db08b8c14b560cfb087ebd89a138.jpg" />
+                {wishGames.length ?
+                    wishGames.map(wishGame => (
+                        <WishGame
+                            name={wishGame.gameName}
+                            image={wishGame.imageUrl}
+                            key={wishGame._id}
+                        />
+                    )) : ""}
             </StyledWishlist>
         </StyledWishPage>
     );
