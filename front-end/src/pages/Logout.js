@@ -1,5 +1,7 @@
 //Functionality
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions/authAction';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -7,16 +9,22 @@ import { fadeIn } from '../animations';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 //Image
-import logout from '../img/logout.jpeg';
+import logoutImg from '../img/logout.jpeg';
 
 const Logout = () => {
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(logout());
+    }
+
     return (
         <StyledLogout variants={fadeIn} initial="hidden" animate="show">
             <div>
                 <button><FontAwesomeIcon size="3x" icon={faHome} /><Link to="/"><h3>Back to Games</h3></Link></button>
-                <button><FontAwesomeIcon size="3x" icon={faSignOutAlt} /><h3>Logout</h3></button>
+                <button onClick={logoutHandler}><FontAwesomeIcon size="3x" icon={faSignOutAlt} /><h3>Logout</h3></button>
             </div>
-            <img src={logout} alt="Sad cat" />
+            <img src={logoutImg} alt="Sad cat" />
         </StyledLogout>
     );
 };

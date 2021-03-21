@@ -48,6 +48,13 @@ export const register = ({ email, password, rePassword }) => dispatch => {
         })
 }
 
+//Logout User
+export const logout = () => {
+    return {
+        type: "LOGOUT_SUCCESS"
+    }
+}
+
 //Setup config/headers and token
 export const tokenConfig = getState => {
     //Get token from local storage
