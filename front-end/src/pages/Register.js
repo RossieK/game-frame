@@ -63,9 +63,10 @@ const Register = () => {
     useEffect(() => {
         //Check for register error
         if (isAuthenticated) {
+            dispatch(clearErrors());
             history.push('/');
         }
-    }, [isAuthenticated, history]);
+    }, [isAuthenticated, history, dispatch]);
 
     return (
         <StyledRegister variants={fadeIn} initial="hidden" animate="show">

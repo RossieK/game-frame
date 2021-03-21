@@ -1,5 +1,5 @@
 //Functionality
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../actions/authAction';
 //Styling
@@ -12,10 +12,12 @@ import { faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import logoutImg from '../img/logout.jpeg';
 
 const Logout = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
         dispatch(logout());
+        history.push('/login');
     }
 
     return (
