@@ -1,5 +1,5 @@
 //Functionality
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/authAction';
@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 
 const Register = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -58,6 +59,13 @@ const Register = () => {
             setErrorMessage(null);
         }
     }, [error]);
+
+    useEffect(() => {
+        //Check for register error
+        if (isAuthenticated) {
+            history.push('/');
+        }
+    }, [isAuthenticated, history]);
 
     return (
         <StyledRegister variants={fadeIn} initial="hidden" animate="show">

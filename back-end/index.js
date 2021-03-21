@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
     res.setHeader('Access-Control-Allow-Headers',
 
-        'Content-Type, Authorization');
+        'Content-Type, Authorization, x-auth-token');
 
     next();
 
