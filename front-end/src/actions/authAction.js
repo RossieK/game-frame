@@ -22,6 +22,32 @@ export const loadUser = () => (dispatch, getState) => {
         })
 }
 
+//Register user
+export const register = ({ email, password, rePassword }) => dispatch => {
+    //Header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    //Request Body
+    const body = JSON.stringify({ email, password, rePassword });
+
+    axios.post("http://localhost:5000/register", body, config)
+        .then(res => dispatch({
+            type: "REGISTER_SUCCESS",
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch({
+                type: "REGISTER_FAIL"
+            });
+
+            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+        })
+}
+
 //Setup config/headers and token
 export const tokenConfig = getState => {
     //Get token from local storage

@@ -1,11 +1,64 @@
 //Functionality
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../actions/authAction';
+import { clearErrors } from '../actions/errorAction';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 
 const Register = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clearErrors());
+    }, [dispatch]);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const error = useSelector(state => state.error);
+
+    const emailChangeHandler = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const passwordChangeHandler = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const rePasswordChangeHandler = (e) => {
+        setRePassword(e.target.value);
+    }
+
+    const submitRegister = (e) => {
+        e.preventDefault();
+
+        //Create User Obj
+        const newUser = {
+            email,
+            password,
+            rePassword
+        };
+
+        //Attempt to register
+        dispatch(register(newUser));
+    }
+
+    useEffect(() => {
+        //Check for register error
+        if (error.id === 'REGISTER_FAIL') {
+            setErrorMessage(error.message.message);
+        } else {
+            setErrorMessage(null);
+        }
+    }, [error]);
+
     return (
         <StyledRegister variants={fadeIn} initial="hidden" animate="show">
             <div className="top-container">
@@ -17,11 +70,12 @@ const Register = () => {
             </div>
             <div className="inner-container">
                 <div className="form-container">
+                    {errorMessage ? (<div className="error-notifications">{errorMessage}</div>) : null}
                     <form>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <input type="password" placeholder="Repeat password" />
-                        <button type="submit">Sign up</button>
+                        <input type="email" placeholder="Email" onChange={emailChangeHandler} />
+                        <input type="password" placeholder="Password" onChange={passwordChangeHandler} />
+                        <input type="password" placeholder="Repeat password" onChange={rePasswordChangeHandler} />
+                        <button type="submit" onClick={submitRegister}>Sign up</button>
                         <h3>Already signed up? <Link to="/login">Log in.</Link></h3>
                     </form>
                 </div>
@@ -105,6 +159,10 @@ overflow: hidden;
         flex-direction: column;
         align-items: center;
         margin-top: 1.5rem;
+
+        .error-notifications{
+            background-color: red;
+        }
 
         form{
             width: 100%;
