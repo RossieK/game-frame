@@ -2,6 +2,10 @@
 import GlobalStyles from './components/GlobalStyle';
 //Routing
 import { Route, Switch } from 'react-router-dom';
+//Functionality
+import { loadUser } from './actions/authAction';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 //Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,6 +19,12 @@ import Login from './pages/Login';
 import Error from './pages/Error';
 
 function App() {
+  //Fetch User
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <GlobalStyles />
