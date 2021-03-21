@@ -14,6 +14,7 @@ import apple from '../img/apple.svg';
 import gamepad from '../img/gamepad.svg';
 import starEmpty from '../img/star-empty.png';
 import starFull from '../img/star-full.png';
+import heart from '../img/heart.svg';
 
 const GameDetail = () => {
     const history = useHistory();
@@ -82,6 +83,10 @@ const GameDetail = () => {
                                 <h3>{game.name}</h3>
                                 <p>Rating: {game.rating}</p>
                                 {getStars()}
+                            </div>
+                            <div className="wishListAdd">
+                            <h3>Add to Wishlist</h3>
+                            <img src={heart} alt="Heart"/>
                             </div>
                             <StyledInfo>
                                 <h3>Platforms</h3>
@@ -155,6 +160,12 @@ const StyledStats = styled(motion.div)`
         width: 2rem;
         height: 2rem;
         display: inline;
+    }
+    .wishListAdd{
+        img{
+            width: 100%;
+            cursor:pointer;
+        }
     }
 `;
 
