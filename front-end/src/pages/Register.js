@@ -170,7 +170,13 @@ overflow: hidden;
         margin-top: 1.5rem;
 
         .error-notifications{
-            background-color: red;
+            border-radius: 1rem;
+            box-shadow: 0px 0px 10px #f55f5f;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            background: #f55f5f;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: bolder;
         }
 
         form{
