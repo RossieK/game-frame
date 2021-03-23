@@ -1,5 +1,6 @@
 //Functionality
 import { smallImage } from '../util';
+import { deleteWishGame } from '../actions/wishesAction';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -7,11 +8,15 @@ import { popUp } from '../animations';
 //Images
 import remove from '../img/remove.svg';
 
-const WishGame = ({ name, image }) => {
+const WishGame = ({ name, image, id }) => {
+    const deleteGameHandler = () => {
+        deleteWishGame(id);
+    }
+
     return (
         <StyledWishGame variants={popUp} initial="hidden" animate="show">
             <h3>{name}</h3>
-            <img id="icon" src={remove} alt="remove" />
+            <img id="icon" src={remove} alt="remove" onClick={deleteGameHandler} />
             <img src={smallImage(image, 640)} alt={name} />
         </StyledWishGame>
     );
@@ -46,6 +51,7 @@ const StyledWishGame = styled(motion.div)`
         grid-area: icon;
         align-self:center;
         margin:auto;
+        cursor: pointer;
     }
 
     img {

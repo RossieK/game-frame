@@ -26,3 +26,14 @@ export const addToWishGames = ({ gameName, imageUrl }) => {
 
     axios.post("http://localhost:5000/games", body, config);
 }
+
+export const deleteWishGame = (id) => {
+    //Header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    axios.delete("http://localhost:5000/games/" + id, config);
+}

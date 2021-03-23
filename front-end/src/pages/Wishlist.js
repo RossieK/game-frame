@@ -26,6 +26,7 @@ const Wishlist = () => {
                         <WishGame
                             name={wishGame.gameName}
                             image={wishGame.imageUrl}
+                            id={wishGame._id}
                             key={wishGame._id}
                         />
                     )) : ""}
