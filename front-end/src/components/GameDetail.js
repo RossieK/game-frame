@@ -17,7 +17,8 @@ import apple from '../img/apple.svg';
 import gamepad from '../img/gamepad.svg';
 import starEmpty from '../img/star-empty.png';
 import starFull from '../img/star-full.png';
-import heart from '../img/heart.svg';
+import heartEmpty from '../img/heart-empty.svg';
+import heartFull from '../img/heart-full.svg';
 
 const GameDetail = () => {
     const history = useHistory();
@@ -76,11 +77,11 @@ const GameDetail = () => {
     //Data
     const { game, screens, isLoading } = useSelector(state => state.detail);
 
-    const addToWishlist = () => {
+    const addToWishlist = (e) => {
         let gameName = game.name;
         let imageUrl = game.background_image;
-        
         addToWishGames({ gameName, imageUrl });
+        e.target.src = heartFull;
     }
 
     return (
@@ -96,7 +97,7 @@ const GameDetail = () => {
                             </div>
                             <div className="wishListAdd">
                                 <h3>Add to Wishlist</h3>
-                                <img src={heart} alt="Heart" onClick={addToWishlist} />
+                                <img src={heartEmpty} alt="Heart" onClick={addToWishlist} />
                             </div>
                             <StyledInfo>
                                 <h3>Platforms</h3>
@@ -175,6 +176,9 @@ const StyledStats = styled(motion.div)`
         img{
             width: 100%;
             cursor:pointer;
+        }
+        h3{
+            color:black;
         }
     }
 `;

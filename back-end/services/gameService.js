@@ -11,7 +11,12 @@ function getAll() {
     return Game.find().lean();
 }
 
+function deleteOne(id) {
+    return Game.deleteOne({ _id: id });
+}
+
 module.exports = {
     create,
-    getAll
+    getAll,
+    deleteOne
 }

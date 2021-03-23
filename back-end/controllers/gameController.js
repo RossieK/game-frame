@@ -4,10 +4,10 @@ const gameService = require('../services/gameService');
 router.get('/', (req, res) => {
     gameService.getAll()
         .then(games => {
-            res.send(games);
+            res.status(200).json(games);
         })
         .catch(err => {
-            console.log(err);
+            res.status(500).json({ message: "Internal error" });
         })
 });
 
@@ -16,11 +16,21 @@ router.post('/', (req, res) => {
 
     gameService.create({ gameName, imageUrl })
         .then(game => {
-            res.send(game);
+            res.status(200).json(game);
         })
         .catch(err => {
-            console.log(err);
+            res.status(500).json({ message: "Internal error" });
         });
+});
+
+router.delete('/:id', (req, res) => {
+    gameService.deleteOne(req.params.id)
+        .then(() => {
+            res.status(200).json({ message: "Deleted successfully" });
+        })
+        .catch(() => {
+            res.status(500).json({ message: "Internal error" });
+        })
 });
 
 module.exports = router;
