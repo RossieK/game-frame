@@ -1,15 +1,19 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
+const formValidator = require('../middlewares/formValidator');
+const registerValidator = require('../middlewares/userMiddlewareValidator');
 
-router.post('/', (req, res) => {
+router.post('/', registerValidator, (req, res) => {
     const { email, password, rePassword } = req.body;
 
     if (!email || !password || !rePassword) {
-        return res.status(400).json({ message: "Please enter all fields" });
+        return res.status(400).json({ message: "All fields are required" });
     }
 
-    if (password != rePassword) {
-        return res.status(400).json({ message: "Both passwords should match" });
+    const formValidations = formValidator(req);
+
+    if (!formValidations.isValid) {
+        return res.status(400).json({ message: `${formValidations.message}` });
     }
 
     userService.register({ email, password })
