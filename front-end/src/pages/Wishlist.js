@@ -8,14 +8,14 @@ import styled from 'styled-components';
 import WishGame from '../components/WishGame';
 
 const Wishlist = () => {
+    //Get data from state
+    const wishGames = useSelector(state => state.wishGames);
+
     //Fetch Data
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadWishGames());
-    }, [dispatch]);
-
-    //Get data from state
-    const wishGames = useSelector(state => state.wishGames);
+    }, [wishGames, dispatch]);
 
     return (
         <StyledWishPage>
