@@ -1,11 +1,67 @@
 //Functionality
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../actions/authAction';
+import { clearErrors } from '../actions/errorAction';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 
 const Login = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clearErrors());
+    }, [dispatch]);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const error = useSelector(state => state.error);
+
+    const emailChangeHandler = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const passwordChangeHandler = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const submitLogin = (e) => {
+        e.preventDefault();
+
+        //Create User Obj
+        const newUser = {
+            email,
+            password
+        };
+
+        //Attempt to register
+        dispatch(login(newUser));
+    }
+
+    useEffect(() => {
+        //Check for register error
+        if (error.id === 'LOGIN_FAIL') {
+            setErrorMessage(error.message.message);
+        } else {
+            setErrorMessage(null);
+        }
+    }, [error]);
+
+    useEffect(() => {
+        //Check for register error
+        if (isAuthenticated) {
+            dispatch(clearErrors());
+            history.push('/');
+        }
+    }, [isAuthenticated, history, dispatch]);
+
     return (
         <StyledLogin variants={fadeIn} initial="hidden" animate="show">
             <div className="top-container">
@@ -17,10 +73,11 @@ const Login = () => {
             </div>
             <div className="inner-container">
                 <div className="form-container">
+                    {errorMessage ? (<div className="error-notifications">{errorMessage}</div>) : null}
                     <form>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button type="submit">Log in</button>
+                        <input type="email" placeholder="Email" onChange={emailChangeHandler} />
+                        <input type="password" placeholder="Password" onChange={passwordChangeHandler} />
+                        <button type="submit" onClick={submitLogin}>Log in</button>
                         <h3>Don't have an account yet? <Link to="/register">Sign up now!</Link></h3>
                     </form>
                 </div>
@@ -104,6 +161,16 @@ const StyledLogin = styled(motion.div)`
             flex-direction: column;
             align-items: center;
             margin-top: 2rem;
+
+            .error-notifications{
+                border-radius: 1rem;
+                box-shadow: 0px 0px 10px #f55f5f;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                background: #f55f5f;
+                color: white;
+                margin-bottom: 1rem;
+                font-weight: bolder;
+            }
 
             form{
                 width: 100%;
