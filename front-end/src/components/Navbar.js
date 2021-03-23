@@ -1,40 +1,56 @@
+//Functionality
+import { useLocation, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+//Styling
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+//Images
 import logo from '../img/logo.svg';
 
 const Navbar = () => {
     const { pathname } = useLocation();
 
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
     return (
         <StyledNavbar>
             <h1 id="logo"><img src={logo} alt="logo" /><Link to="/">Game Frame</Link></h1>
             <ul>
-                <li>
-                    <Link to="/">All Games</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/" ? "50%" : "0%" }} />
-                </li>
-                <li>
-                    <Link to="/reviews">Reviews</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/reviews" ? "50%" : "0%" }} />
-                </li>
-                <li>
-                    <Link to="/wishlist">Wishlist</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/wishlist" ? "50%" : "0%" }} />
-                </li>
-                <li>
-                    <Link to="/logout">Logout</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/logout" ? "50%" : "0%" }} />
-                </li>
-                <li>
-                    <Link to="/register">Register</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/register" ? "50%" : "0%" }} />
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                    <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/login" ? "50%" : "0%" }} />
-                </li>
+                {isAuthenticated ? (
+                    <>
+                        <li>
+                            <Link to="/">All Games</Link>
+                            <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/" ? "50%" : "0%" }} />
+                        </li>
+                        <li>
+                            <Link to="/reviews">Reviews</Link>
+                            <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/reviews" ? "50%" : "0%" }} />
+                        </li>
+                        <li>
+                            <Link to="/wishlist">Wishlist</Link>
+                            <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/wishlist" ? "50%" : "0%" }} />
+                        </li>
+                        <li>
+                            <Link to="/logout">Logout</Link>
+                            <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/logout" ? "50%" : "0%" }} />
+                        </li>
+                    </>
+                ) : (
+                        <>
+                            <li>
+                                <Link to="/">Home</Link>
+                                <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/" ? "50%" : "0%" }} />
+                            </li>
+                            <li>
+                                <Link to="/register">Register</Link>
+                                <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/register" ? "50%" : "0%" }} />
+                            </li>
+                            <li>
+                                <Link to="/login">Login</Link>
+                                <StyledLine transition={{ duration: 0.75 }} initial={{ width: "0%" }} animate={{ width: pathname === "/login" ? "50%" : "0%" }} />
+                            </li>
+                        </>
+                    )}
             </ul>
         </StyledNavbar>
     );
