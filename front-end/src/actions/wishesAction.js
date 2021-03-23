@@ -12,3 +12,17 @@ export const loadWishGames = () => async(dispatch) => {
         }
     });
 }
+
+export const addToWishGames = ({ gameName, imageUrl }) => {
+    //Header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    //Request Body
+    const body = JSON.stringify({ gameName, imageUrl });
+
+    axios.post("http://localhost:5000/games", body, config);
+}

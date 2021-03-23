@@ -28,13 +28,13 @@ async function login({ email, password }) {
     let user = await User.findOne({ email });
 
     if (!user) {
-        throw new Error('Invalid credentials');
+        throw 'Invalid credentials';
     }
 
     let passwordsMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordsMatch) {
-        throw new Error('Invalid credentials');
+        throw 'Invalid credentials';
     }
 
     let token = jwt.sign({ _id: user._id }, secret);

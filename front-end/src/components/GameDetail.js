@@ -1,9 +1,12 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+//Functionality
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { noDetailsLoaded } from '../actions/detailAction';
 import { smallImage } from '../util';
+import { addToWishGames } from '../actions/wishesAction';
+//Styling
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 //Images
 import playstation from '../img/playstation.svg';
@@ -73,6 +76,13 @@ const GameDetail = () => {
     //Data
     const { game, screens, isLoading } = useSelector(state => state.detail);
 
+    const addToWishlist = () => {
+        let gameName = game.name;
+        let imageUrl = game.background_image;
+        
+        addToWishGames({ gameName, imageUrl });
+    }
+
     return (
         <>
             {!isLoading && (
@@ -85,8 +95,8 @@ const GameDetail = () => {
                                 {getStars()}
                             </div>
                             <div className="wishListAdd">
-                            <h3>Add to Wishlist</h3>
-                            <img src={heart} alt="Heart"/>
+                                <h3>Add to Wishlist</h3>
+                                <img src={heart} alt="Heart" onClick={addToWishlist} />
                             </div>
                             <StyledInfo>
                                 <h3>Platforms</h3>
