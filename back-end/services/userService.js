@@ -42,8 +42,13 @@ async function login({ email, password }) {
     return token;
 }
 
+function getUser(email) {
+    return User.findOne({ email }).lean();
+}
+
 module.exports = {
     register,
     loginUponRegistration,
-    login
+    login,
+    getUser
 }

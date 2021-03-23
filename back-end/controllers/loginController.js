@@ -10,8 +10,14 @@ router.post('/', async(req, res) => {
 
     try {
         let token = await userService.login({ email, password });
+        let user = await userService.getUser(email);
+
         res.json({
-            token
+            token,
+            user: {
+                id: user._id,
+                email: user.email
+            }
         });
     } catch (error) {
         res.status(400).json({ message: `${error}` });
