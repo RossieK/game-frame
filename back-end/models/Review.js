@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const reviewSchema = new mongoose.Schema({
     user: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     game: {
         type: String,
