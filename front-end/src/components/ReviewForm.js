@@ -1,9 +1,74 @@
+//Functionality
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReview } from '../actions/reviewsAction';
+import { clearErrors } from '../actions/errorAction';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 
 const ReviewForm = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clearErrors());
+    }, [dispatch]);
+
+    const [user, setUser] = useState("");
+    const [game, setGame] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    const [description, setDescription] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const error = useSelector(state => state.error);
+
+    const userChangeHandler = (e) => {
+        setUser(e.target.value);
+    }
+
+    const gameChangeHandler = (e) => {
+        setGame(e.target.value);
+    }
+
+    const imageUrlChangeHandler = (e) => {
+        setImageUrl(e.target.value);
+    }
+
+    const descriptionChangeHandler = (e) => {
+        setDescription(e.target.value);
+    }
+
+    const submitReview = (e) => {
+        e.preventDefault();
+
+        //Create Review Obj
+        const newReview = {
+            user,
+            game,
+            imageUrl,
+            description
+        };
+
+        //Attempt to add review
+        dispatch(addReview(newReview));
+
+        //Clear Input
+        setUser("");
+        setGame("");
+        setImageUrl("");
+        setDescription("");
+    }
+
+    useEffect(() => {
+        //Check for review error
+        if (error.id === 'ADD_REVIEW_FAIL') {
+            setErrorMessage(error.message.message);
+        } else {
+            setErrorMessage(null);
+        }
+    }, [error]);
+
     return (
         <StyledReviewForm variants={fadeIn} initial="hidden" animate="show">
             <div className="top-container">
@@ -11,12 +76,13 @@ const ReviewForm = () => {
                     <img src="https://media.giphy.com/media/nDV1pz6h3Ux9kP7a4z/giphy.gif" alt="Giphy" />
                 </div>
                 <div className="form-container">
+                    {errorMessage ? (<div className="error-notifications">{errorMessage}</div>) : null}
                     <form>
-                        <input type="text" placeholder="Name" />
-                        <input type="text" placeholder="Game name" />
-                        <input type="text" placeholder="Game cover URL" />
-                        <textarea placeholder="Review" />
-                        <button type="submit">Submit</button>
+                        <input value={user} type="text" placeholder="Name" onChange={userChangeHandler} />
+                        <input value={game} type="text" placeholder="Game name" onChange={gameChangeHandler} />
+                        <input value={imageUrl} type="text" placeholder="Game cover URL" onChange={imageUrlChangeHandler} />
+                        <textarea value={description} placeholder="Review" onChange={descriptionChangeHandler} />
+                        <button type="submit" onClick={submitReview}>Submit</button>
                     </form>
                 </div>
             </div>
@@ -67,6 +133,16 @@ const StyledReviewForm = styled(motion.div)`
             margin-bottom: 2rem;
             grid-area: form;
             align-self: center;
+
+            .error-notifications{
+            border-radius: 1rem;
+            box-shadow: 0px 0px 10px #f55f5f;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            background: #f55f5f;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: bolder;
+            }
 
             form{
                 width: 100%;
