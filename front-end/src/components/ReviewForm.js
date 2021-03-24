@@ -29,7 +29,7 @@ const StyledReviewForm = styled(motion.div)`
     margin-top: 5rem;
     margin-bottom: 10rem;
     width: 800px;
-    min-height: 600px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     border-radius: 19px;
@@ -41,16 +41,19 @@ const StyledReviewForm = styled(motion.div)`
 
     .top-container{
         width: 100%;
-        display: flex;
-        flex-direction: column;
         padding: 0 1.8rem;
+        display: grid;
+        grid-column: 1fr;
+        grid-template-areas: "giphy form";
 
         .giphy{
             margin-top: 2rem;
             width: 100%;
+            grid-area: giphy;
+            align-self: center;
 
             img{
-                width: 30%;
+                width: 90%;
                 margin: auto;
             }
         }
@@ -62,6 +65,8 @@ const StyledReviewForm = styled(motion.div)`
             text-align: center;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            grid-area: form;
+            align-self: center;
 
             form{
                 width: 100%;
