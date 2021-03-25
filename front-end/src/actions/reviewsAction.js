@@ -31,7 +31,6 @@ export const addReview = ({ user, game, imageUrl, description }) => dispatch => 
             dispatch(loadReviews());
         })
         .catch(err => {
-            console.log(err);
             dispatch(returnErrors(err.response.data, err.response.status, 'ADD_REVIEW_FAIL'));
         })
 }

@@ -1,20 +1,25 @@
+//Functionality
+import { Component } from 'react';
+//Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 //Image
 import error from '../img/error.jpeg';
 
-const Error = () => {
-    return (
-        <StyledError variants={fadeIn} initial="hidden" animate="show">
-            <img src={error} alt="Error" />
-            <div>
-                <h1>AWWWW... Don't Cry.</h1>
-                <h3>It's just a 404 error.</h3>
-            </div>
-        </StyledError>
-    );
-};
+class Error extends Component {
+    render() {
+        return (
+            <StyledError variants={fadeIn} initial="hidden" animate="show">
+                <img src={error} alt="Error" />
+                <div>
+                    <h1>AWWWW... Don't Cry.</h1>
+                    <h3>It's just a 404 error.</h3>
+                </div>
+            </StyledError>
+        );
+    }
+}
 
 const StyledError = styled(motion.div)`
     display: flex;
