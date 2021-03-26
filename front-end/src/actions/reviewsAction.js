@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { returnErrors } from './errorAction';
+import { returnErrors, clearErrors } from './errorAction';
 
 //Get reviews
 export const loadReviews = () => async(dispatch) => {
@@ -29,6 +29,7 @@ export const addReview = ({ user, game, imageUrl, description }) => dispatch => 
     axios.post("http://localhost:5000/reviews", body, config)
         .then(res => {
             dispatch(loadReviews());
+            dispatch(clearErrors());
         })
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status, 'ADD_REVIEW_FAIL'));
