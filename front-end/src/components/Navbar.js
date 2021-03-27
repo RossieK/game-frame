@@ -10,6 +10,7 @@ import logo from '../img/logo.svg';
 const Navbar = () => {
     const { pathname } = useLocation();
 
+    //Get auth from state
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     return (

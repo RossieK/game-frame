@@ -1,24 +1,39 @@
+//Functionality
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchSearch } from '../actions/gamesAction';
+//Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { fetchSearch } from '../actions/gamesAction';
-import { useDispatch } from 'react-redux';
 import { fadeIn } from '../animations';
+//Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
+//Search functionality
 const Search = () => {
-    //Search functionality
     const dispatch = useDispatch();
+
+    //Prepare input state
     const [textInput, setTextInput] = useState("");
+
+    //Set state with form data
     const inputHandler = (e) => {
         setTextInput(e.target.value);
     };
+
+    //Search submissiong
     const submitSearch = (e) => {
         e.preventDefault();
+
+        //Execute search
         dispatch(fetchSearch(textInput));
+
+        //Clear input
         setTextInput('');
     };
+
+    //Clear searched games
     const clearSearched = () => {
         dispatch({ type: "CLEAR_SEARCHED" });
     }
@@ -26,7 +41,7 @@ const Search = () => {
     return (
         <StyledSearch variants={fadeIn} initial="hidden" animate="show">
             <form className="search">
-                <FontAwesomeIcon className="x-search" size="1x" icon={faArrowCircleLeft} onClick={clearSearched}/>
+                <FontAwesomeIcon className="x-search" size="1x" icon={faArrowCircleLeft} onClick={clearSearched} />
                 <input value={textInput} onChange={inputHandler} type="text" />
                 <button onClick={submitSearch} type="submit"> <FontAwesomeIcon size="1x" icon={faSearch} /></button>
             </form>

@@ -21,6 +21,7 @@ import Error from './pages/Error';
 function App() {
   //Fetch User
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);

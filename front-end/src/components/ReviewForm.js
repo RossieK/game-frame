@@ -11,18 +11,22 @@ import { fadeIn } from '../animations';
 const ReviewForm = () => {
     const dispatch = useDispatch();
 
+    //Clear errors upon rendering
     useEffect(() => {
         dispatch(clearErrors());
     }, [dispatch]);
 
+    //Prepare state
     const [user, setUser] = useState("");
     const [game, setGame] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
 
+    //Get errors from state
     const error = useSelector(state => state.error);
 
+    //Set state with form data
     const userChangeHandler = (e) => {
         setUser(e.target.value);
     }
@@ -39,6 +43,7 @@ const ReviewForm = () => {
         setDescription(e.target.value);
     }
 
+    //Form submissiong
     const submitReview = (e) => {
         e.preventDefault();
 
@@ -60,6 +65,7 @@ const ReviewForm = () => {
         setDescription("");
     }
 
+    //Set errors if any
     useEffect(() => {
         //Check for review error
         if (error.id === 'ADD_REVIEW_FAIL') {

@@ -13,17 +13,23 @@ const Login = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //Clear errors upon page rendering
     useEffect(() => {
         dispatch(clearErrors());
     }, [dispatch]);
 
+    //Prepare state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
 
+    //Get authentication from state
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+    //Get errors from state
     const error = useSelector(state => state.error);
 
+    //Set state with form data
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
     }
@@ -32,6 +38,7 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
+    //Login submissiong
     const submitLogin = (e) => {
         e.preventDefault();
 
@@ -41,12 +48,13 @@ const Login = () => {
             password
         };
 
-        //Attempt to register
+        //Attempt to login
         dispatch(login(newUser));
     }
 
+    //Set errors
     useEffect(() => {
-        //Check for register error
+        //Check for login error
         if (error.id === 'LOGIN_FAIL') {
             setErrorMessage(error.message.message);
         } else {
@@ -54,8 +62,8 @@ const Login = () => {
         }
     }, [error]);
 
+    //Clear errors and redirect upon successful login
     useEffect(() => {
-        //Check for register error
         if (isAuthenticated) {
             dispatch(clearErrors());
             history.push('/');

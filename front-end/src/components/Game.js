@@ -1,13 +1,15 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+//Functionality
 import { useDispatch } from 'react-redux';
 import { loadDetail } from '../actions/detailAction';
 import { Link } from 'react-router-dom';
 import { smallImage } from '../util';
+//Styling
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { popUp } from '../animations';
 
 const Game = ({ name, released, image, id, short_screenshots }) => {
-    //Details
+    //Fetch details
     const dispatch = useDispatch();
     const loadDetailHandler = () => {
         document.body.style.overflow = "hidden";
@@ -33,6 +35,7 @@ const StyledGame = styled(motion.div)`
     cursor: pointer;
     overflow:hidden;
     background-color: white;
+    
     img {
         width:100%;
         height:50vh;

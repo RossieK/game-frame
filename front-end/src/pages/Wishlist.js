@@ -8,11 +8,12 @@ import styled from 'styled-components';
 import WishGame from '../components/WishGame';
 
 const Wishlist = () => {
-    //Get data from state
+    //Get games data from state
     const wishGames = useSelector(state => state.wishGames);
 
-    //Fetch Data
+    //Fetch Games Data
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(loadWishGames());
     }, [wishGames, dispatch]);

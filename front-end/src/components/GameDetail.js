@@ -35,7 +35,7 @@ const GameDetail = () => {
         }
     }
 
-    //Getting images
+    //Setting rating stars 
     const getStars = () => {
         const stars = [];
         const rating = Math.floor(game.rating);
@@ -50,6 +50,7 @@ const GameDetail = () => {
         return stars;
     }
 
+    //Setting images for platforms
     const getPlatform = (platform) => {
         switch (platform) {
             case "Playstation 4":
@@ -74,9 +75,10 @@ const GameDetail = () => {
         }
     }
 
-    //Data
+    //Get data from state
     const { game, screens, isLoading } = useSelector(state => state.detail);
 
+    //Add to wishlist functionality
     const addToWishlist = (e) => {
         let gameName = game.name;
         let imageUrl = game.background_image;

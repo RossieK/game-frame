@@ -13,18 +13,24 @@ const Register = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //Clear errors upon page rendering
     useEffect(() => {
         dispatch(clearErrors());
     }, [dispatch]);
 
+    //Prepare state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
 
+    //Get authentication from state
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+    //Get errors from state
     const error = useSelector(state => state.error);
 
+    //Set state with form data
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
     }
@@ -37,6 +43,7 @@ const Register = () => {
         setRePassword(e.target.value);
     }
 
+    //Register submission
     const submitRegister = (e) => {
         e.preventDefault();
 
@@ -51,6 +58,7 @@ const Register = () => {
         dispatch(register(newUser));
     }
 
+    //Set errors
     useEffect(() => {
         //Check for register error
         if (error.id === 'REGISTER_FAIL') {
@@ -60,6 +68,7 @@ const Register = () => {
         }
     }, [error]);
 
+    //Clear errors and redirect upon successful registration
     useEffect(() => {
         //Check for register error
         if (isAuthenticated) {

@@ -18,15 +18,16 @@ const Home = () => {
     const location = useLocation();
     const pathId = location.pathname.split('/')[2];
 
-    //Fetch Data
+    //Fetch Games Data
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadGames());
     }, [dispatch]);
 
-    //Get data from state
+    //Get games data from state
     const { popular, newGames, upcoming, searched } = useSelector(state => state.games);
 
+    //Check if user authenticated
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     return (

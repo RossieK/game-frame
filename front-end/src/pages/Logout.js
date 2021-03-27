@@ -6,15 +6,16 @@ import { logout } from '../actions/authAction';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
+//Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-//Image
 import logoutImg from '../img/logout.jpeg';
 
 const Logout = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //Logout function
     const logoutHandler = () => {
         dispatch(logout());
         history.push('/login');

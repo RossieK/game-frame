@@ -9,13 +9,14 @@ import ReviewForm from '../components/ReviewForm';
 import Review from '../components/Review';
 
 const Reviews = () => {
-    //Fetch Data
+    //Fetch Reviews Data
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(loadReviews());
     }, [dispatch]);
 
-    //Get data from state
+    //Get reviews data from state
     const reviews = useSelector(state => state.reviews);
 
     return (

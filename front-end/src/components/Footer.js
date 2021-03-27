@@ -1,6 +1,8 @@
+//Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
+//Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
 import github from '../img/github.svg';
@@ -25,17 +27,25 @@ const StyledFooter = styled(motion.div)`
     text-align: center;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+    display: grid;
+    grid-column: 1fr;
+    grid-template-areas: "main rights";
+
     h3{
         font-size: 1.2rem;
         color:black;
         padding-left:1rem;
         display: inline-block;
         text-align: left;
+        grid-area: main;
+        align-self:center;
     }
     h4{
         padding-left:30rem;
         display: inline-block;
         color:black;
+        grid-area: rights;
+        align-self:center;
     }
     img{
         margin-left: 1.2rem;

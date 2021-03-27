@@ -9,6 +9,7 @@ import { popUp } from '../animations';
 import remove from '../img/remove.svg';
 
 const WishGame = ({ name, image, id }) => {
+    //Delete wish game functionality
     const deleteGameHandler = () => {
         deleteWishGame(id);
     }
