@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-//Actipn Creator
+//Get wish games
 export const loadWishGames = () => async(dispatch) => {
     //Fetching data
     const wishGamesData = await axios.get("http://localhost:5000/games");
@@ -24,9 +24,11 @@ export const addToWishGames = ({ gameName, imageUrl }) => {
     //Request Body
     const body = JSON.stringify({ gameName, imageUrl });
 
+    //Post game
     axios.post("http://localhost:5000/games", body, config);
 }
 
+//Delete specific wish game
 export const deleteWishGame = (id) => {
     //Header
     const config = {
@@ -35,5 +37,6 @@ export const deleteWishGame = (id) => {
         }
     }
 
+    //Delete game
     axios.delete("http://localhost:5000/games/" + id, config);
 }

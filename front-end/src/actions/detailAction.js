@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { gameDetailsUrl } from '../api';
 
+//Get game details
 export const loadDetail = (id, short_screenshots) => async(dispatch) => {
     dispatch({
         type: "LOADING_DETAIL"
@@ -17,6 +18,7 @@ export const loadDetail = (id, short_screenshots) => async(dispatch) => {
     });
 };
 
+//Clear details from state
 export const noDetailsLoaded = () => async(dispatch) => {
     dispatch({
         type: "NO_DETAILS_LOADED"

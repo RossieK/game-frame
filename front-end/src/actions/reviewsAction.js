@@ -26,6 +26,7 @@ export const addReview = ({ user, game, imageUrl, description }) => dispatch => 
     //Request Body
     const body = JSON.stringify({ user, game, imageUrl, description });
 
+    //Post review
     axios.post("http://localhost:5000/reviews", body, config)
         .then(res => {
             dispatch(loadReviews());
