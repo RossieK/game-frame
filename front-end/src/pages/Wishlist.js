@@ -1,5 +1,6 @@
 //Functionality
 import { useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadWishGames } from '../actions/wishesAction';
 //Styling
@@ -13,7 +14,7 @@ const Wishlist = () => {
 
     //Fetch Games Data
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         dispatch(loadWishGames());
     }, [wishGames, dispatch]);
@@ -30,7 +31,12 @@ const Wishlist = () => {
                             id={wishGame._id}
                             key={wishGame._id}
                         />
-                    )) : ""}
+                    )) : (
+                        <StyledPlaceholder>
+                            <h1>Nothing here just yet. <Link to="/">Go</Link> add all the games that you are eager to play.</h1>
+                            <img src="https://media.giphy.com/media/xkvttzvWDPMEEXAJB1/giphy.gif" alt="Gaming giphy"/>
+                        </StyledPlaceholder>
+                    )}
             </StyledWishlist>
         </StyledWishPage>
     );
@@ -50,6 +56,20 @@ const StyledWishlist = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-column-gap: 3rem;
     grid-row-gap: 5rem;
+`;
+
+const StyledPlaceholder = styled.div`
+    h1{
+        color:white;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    img{
+        margin: auto;
+        margin-top: 8rem;
+        width: 40%;
+    }
 `;
 
 export default Wishlist;
