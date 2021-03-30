@@ -2,8 +2,9 @@ const router = require('express').Router();
 const reviewService = require('../services/reviewService');
 const reviewValidator = require('../middlewares/reviewMiddlewareValidator');
 const formValidator = require('../middlewares/formValidator');
+const auth = require('../middlewares/auth');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     reviewService.getAll()
         .then(reviews => {
             res.status(200).json(reviews);
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/', reviewValidator, (req, res) => {
+router.post('/', auth, reviewValidator, (req, res) => {
     const { user, game, imageUrl, description } = req.body;
 
     if (!user || !game || !imageUrl || !description) {
