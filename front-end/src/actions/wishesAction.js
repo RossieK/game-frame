@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { tokenConfig } from './authAction';
 
 //Get wish games
-export const loadWishGames = () => async(dispatch) => {
+export const loadWishGames = () => async(dispatch, getState) => {
     //Fetching data
-    const wishGamesData = await axios.get("http://localhost:5000/games");
+    const wishGamesData = await axios.get("http://localhost:5000/games", tokenConfig(getState));
 
     dispatch({
         type: "FETCH_WISHGAMES",

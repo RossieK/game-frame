@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const gameService = require('../services/gameService');
+const auth = require('../middlewares/auth');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     gameService.getAll()
         .then(games => {
             res.status(200).json(games);
