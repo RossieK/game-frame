@@ -53,13 +53,16 @@ const GameDetail = () => {
     //Setting images for platforms
     const getPlatform = (platform) => {
         switch (platform) {
-            case "Playstation 4":
+            case "PlayStation 4":
                 return playstation;
 
-            case "Playstation 5":
+            case "PlayStation 5":
                 return playstation;
 
             case "Xbox One":
+                return xbox;
+
+            case "Xbox Series S/X":
                 return xbox;
 
             case "PC":
@@ -69,6 +72,9 @@ const GameDetail = () => {
                 return nintendo;
 
             case "iOS":
+                return apple;
+
+            case "macOS":
                 return apple;
 
             default: return gamepad;
@@ -105,7 +111,7 @@ const GameDetail = () => {
                                 <h3>Platforms</h3>
                                 <StyledPlatforms>
                                     {game.platforms.map(data => (
-                                        <img alt={data.platform.name} src={getPlatform(data.platform.name)} key={data.platform.id}></img>
+                                        <img alt={data.platform.name} src={getPlatform(data.platform.name)} title={data.platform.name} key={data.platform.id}></img>
                                     ))}
                                 </StyledPlatforms>
                             </StyledInfo>
