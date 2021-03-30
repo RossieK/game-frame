@@ -17,7 +17,7 @@ const Wishlist = () => {
 
     useEffect(() => {
         dispatch(loadWishGames());
-    }, [wishGames, dispatch]);
+    }, [dispatch]);
 
     return (
         <StyledWishPage>

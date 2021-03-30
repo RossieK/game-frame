@@ -1,6 +1,7 @@
 //Functionality
 import { smallImage } from '../util';
 import { deleteWishGame } from '../actions/wishesAction';
+import { useDispatch } from 'react-redux';
 //Styling
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -9,9 +10,11 @@ import { popUp } from '../animations';
 import remove from '../img/remove.svg';
 
 const WishGame = ({ name, image, id }) => {
+    const dispatch = useDispatch();
+
     //Delete wish game functionality
     const deleteGameHandler = () => {
-        deleteWishGame(id);
+        dispatch(deleteWishGame(id));
     }
 
     return (

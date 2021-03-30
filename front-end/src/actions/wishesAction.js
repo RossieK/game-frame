@@ -29,14 +29,17 @@ export const addToWishGames = ({ gameName, imageUrl }) => {
 }
 
 //Delete specific wish game
-export const deleteWishGame = (id) => {
+export const deleteWishGame = (id) => dispatch => {
     //Header
     const config = {
-        headers: {
-            'Content-Type': 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
-    }
-
-    //Delete game
-    axios.delete("http://localhost:5000/games/" + id, config);
+        //Delete game
+    axios.delete("http://localhost:5000/games/" + id, config)
+        .then(() => {
+            dispatch(loadWishGames());
+        })
+        .catch(err => console.log(err));
 }
