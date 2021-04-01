@@ -1,6 +1,6 @@
 //Functionality
 import { useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadWishGames } from '../actions/wishesAction';
 //Styling
@@ -11,6 +11,8 @@ import WishGame from '../components/WishGame';
 const Wishlist = () => {
     //Get games data from state
     const wishGames = useSelector(state => state.wishGames);
+    //Get auth from state
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     //Fetch Games Data
     const dispatch = useDispatch();
@@ -20,25 +22,30 @@ const Wishlist = () => {
     }, [dispatch]);
 
     return (
-        <StyledWishPage>
-            <h2>My WishList</h2>
-            <StyledWishlist>
-                {wishGames.length ?
-                    wishGames.map(wishGame => (
-                        <WishGame
-                            name={wishGame.gameName}
-                            image={wishGame.imageUrl}
-                            id={wishGame._id}
-                            key={wishGame._id}
-                        />
-                    )) : (
-                        <StyledPlaceholder>
-                            <h1>Nothing here just yet. <Link to="/">Go</Link> add all the games that you are eager to play.</h1>
-                            <img src="https://media.giphy.com/media/xkvttzvWDPMEEXAJB1/giphy.gif" alt="Gaming giphy"/>
-                        </StyledPlaceholder>
-                    )}
-            </StyledWishlist>
-        </StyledWishPage>
+        <>
+            {isAuthenticated ? (
+                <StyledWishPage>
+                    <h2>My WishList</h2>
+                    <StyledWishlist>
+                        {wishGames.length ?
+                            wishGames.map(wishGame => (
+                                <WishGame
+                                    name={wishGame.gameName}
+                                    image={wishGame.imageUrl}
+                                    id={wishGame._id}
+                                    key={wishGame._id}
+                                />
+                            )) : (
+                                <StyledPlaceholder>
+                                    <h1>Nothing here just yet. <Link to="/">Go</Link> add all the games that you are eager to play.</h1>
+                                    <img src="https://media.giphy.com/media/xkvttzvWDPMEEXAJB1/giphy.gif" alt="Gaming giphy" />
+                                </StyledPlaceholder>
+                            )}
+                    </StyledWishlist>
+                </StyledWishPage>) : (
+                    <Redirect to={{ "pathname": "/login" }} />
+                )}
+        </>
     );
 };
 
