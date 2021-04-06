@@ -14,15 +14,23 @@ In more details:
 
 - the components are functional ones but there is one class component as well;
 
+- the requests are done by using Axios;
+
 - the styling is done by using styled components;
 
 - the state is managed with Redux;
 
-- the application has public and private part (accessible after succesful authentication), the authentication is based on JWT.
+- the application has public and private part (accessible after succesful authentication), the authentication is based on JWT saved in local storage.
 
 ## How to set it up
 
 ### Backend
+
+To install the dependancies, you should run: 
+
+```bash
+npm install
+```
 
 To start the server you can simply run:
 
@@ -33,6 +41,12 @@ npm start
 If you go to 'config/config.js', you can modify the port, the mongoDB URI as well as the salt rounds for bcrypt and the secret for JWT (used for the authentication). 
 
 ### Frontend
+
+To install the dependancies, you should run: 
+
+```bash
+npm install
+```
 
 To get the frontend up and running, you can type the following command:
 
